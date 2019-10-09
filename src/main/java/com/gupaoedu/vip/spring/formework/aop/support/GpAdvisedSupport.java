@@ -2,6 +2,7 @@ package com.gupaoedu.vip.spring.formework.aop.support;
 
 import com.gupaoedu.vip.spring.formework.aop.aspect.GpAfterReturningAdviceInterceptor;
 import com.gupaoedu.vip.spring.formework.aop.aspect.GpAfterThrowingAdviceInterceptor;
+import com.gupaoedu.vip.spring.formework.aop.aspect.GpAroundAdviceInterceptor;
 import com.gupaoedu.vip.spring.formework.aop.aspect.GpMethodBeforeAdviceInterceptor;
 import com.gupaoedu.vip.spring.formework.aop.config.GpAopConfig;
 
@@ -108,6 +109,9 @@ public class GpAdvisedSupport {
                     //before
                     if (!(null == config.getAspectBefore() || "".equals(config.getAspectBefore()))) {
                         advices.add(new GpMethodBeforeAdviceInterceptor(aspectMethods.get(config.getAspectBefore()), aspectClass.newInstance()));
+                    }
+                    if (!(null == config.getAspectAournd() || "".equals(config.getAspectAournd()))) {
+                        advices.add(new GpAroundAdviceInterceptor(aspectMethods.get(config.getAspectAournd()), aspectClass.newInstance()));
                     }
                     if (!(null == config.getAspectAfter() || "".equals(config.getAspectAfter()))) {
                         advices.add(new GpAfterReturningAdviceInterceptor(aspectMethods.get(config.getAspectAfter()), aspectClass.newInstance()));
